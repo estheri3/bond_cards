@@ -1,3 +1,5 @@
+console.log("✅ script.js loaded");
+
 // 질문 + 말씀 + 태그 데이터
 const questions = {
   connect: [
