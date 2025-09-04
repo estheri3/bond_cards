@@ -122,7 +122,7 @@
       ]
     };
 
-    // 섹션 전환 + 초기 질문 표시
+    // 섹션 전환 + 초기 질문 세팅
     function nextSection(id) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(id).classList.add('active');
@@ -149,14 +149,14 @@
       box.innerHTML = `<p><b>💡 질문:</b> ${q}</p>`;
     }
 
-    // 다시 뽑기 → 질문 교체 + 버튼 전환
+    // 다시 뽑기 → 질문 교체, 버튼 전환
     function retry(boxId, category, retryId, nextId) {
       drawQuestion(boxId, category);
       document.getElementById(retryId).style.display = "none";
       document.getElementById(nextId).style.display = "inline-block";
     }
 
-    // 버튼 상태 리셋 (다시뽑기만 보이고 다음으로는 숨김)
+    // 버튼 상태 초기화
     function resetBtns(retryId, nextId) {
       document.getElementById(retryId).style.display = "inline-block";
       document.getElementById(nextId).style.display = "none";
