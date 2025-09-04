@@ -1,5 +1,3 @@
-console.log("✅ script.js loaded");
-
 // 질문 + 말씀 + 태그 데이터
 const questions = {
   connect: [
@@ -51,8 +49,8 @@ function nextSection(id) {
 
 // 카드 열기 버튼 클릭 시 뒤집기
 function flipCard(cardId) {
-  const card = document.getElementById(cardId);
-  card.classList.add('is-flipped');
+  const cardElement = document.getElementById(cardId);
+  cardElement.classList.add('is-flipped');
 }
 
 // 질문 뽑기
@@ -82,3 +80,5 @@ function resetBtns(retryId, nextId) {
   document.getElementById(retryId).style.display = "inline-block";
   document.getElementById(nextId).style.display = "none";
 }
+
+console.log("✅ script.js loaded");
