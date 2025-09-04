@@ -69,7 +69,13 @@ function drawQuestion(boxId, category) {
     <p>${qobj.verse}</p>
     <div class="tags">${qobj.tags.map(t=>`<span>${t}</span>`).join('')}</div>
   `;
+
+  const card = box.closest('.card');
+  setTimeout(() => {
+    card.classList.add('is-flipped');
+  }, 300);
 }
+
 
 // 다시 뽑기 → 질문 교체 + 버튼 전환
 function retry(boxId, category, retryId, nextId) {
