@@ -34,10 +34,6 @@
       margin: 10px;
     }
     button:hover { background: #483d8b; }
-    .disabled {
-      background: gray !important;
-      cursor: not-allowed;
-    }
   </style>
 </head>
 <body>
@@ -53,31 +49,37 @@
   <!-- 영역 1: 연결 -->
   <div id="section1" class="section">
     <h2>#1. 매듭 – 연결</h2>
-    <p>매듭은 <b>연결</b>을 의미합니다.<br>  
+    <p>매듭은 <b>연결</b>을 의미합니다.<br>
     나와 공동체, 나와 하나님과의 연결에 대해 나눠봅시다.</p>
     <div id="q1" class="question-box"></div>
-    <button id="retry1" onclick="drawQuestion('q1','connect', this)" >다시 뽑기</button>
-    <button onclick="nextSection('section2')">다음으로</button>
+    <div class="btn-group">
+      <button id="retry1" onclick="retry('q1','connect','retry1','next1')">다시 뽑기</button>
+      <button id="next1" onclick="nextSection('section2')" style="display:none">다음으로</button>
+    </div>
   </div>
 
   <!-- 영역 2: 결박 -->
   <div id="section2" class="section">
     <h2>#2. 매듭 – 결박</h2>
-    <p>매듭은 때로는 <b>결박</b>을 의미합니다.<br>  
+    <p>매듭은 때로는 <b>결박</b>을 의미합니다.<br>
     우리 삶 가운데 있는 매듭들에 대해 나눠봅시다.</p>
     <div id="q2" class="question-box"></div>
-    <button id="retry2" onclick="drawQuestion('q2','bind', this)" >다시 뽑기</button>
-    <button onclick="nextSection('section3')">다음으로</button>
+    <div class="btn-group">
+      <button id="retry2" onclick="retry('q2','bind','retry2','next2')">다시 뽑기</button>
+      <button id="next2" onclick="nextSection('section3')" style="display:none">다음으로</button>
+    </div>
   </div>
 
   <!-- 영역 3: 자유 -->
   <div id="section3" class="section">
     <h2>#3. 매듭 – 자유</h2>
-    <p>하나님께서는 우리를 우리의 매듭으로부터 <b>자유</b>케 하시고<br>  
+    <p>하나님께서는 우리를 우리의 매듭으로부터 <b>자유</b>케 하시고<br>
     하나님께로 새로운 매듭을 지어주십니다.</p>
     <div id="q3" class="question-box"></div>
-    <button id="retry3" onclick="drawQuestion('q3','free', this)" >다시 뽑기</button>
-    <button onclick="nextSection('final')">다음으로</button>
+    <div class="btn-group">
+      <button id="retry3" onclick="retry('q3','free','retry3','next3')">다시 뽑기</button>
+      <button id="next3" onclick="nextSection('final')" style="display:none">다음으로</button>
+    </div>
   </div>
 
   <!-- 마지막 화면 -->
@@ -120,27 +122,44 @@
       ]
     };
 
-    // 현재 보여줄 섹션 관리
+    // 섹션 전환 + 초기 질문 표시
     function nextSection(id) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(id).classList.add('active');
-      if (id === 'section1') drawQuestion('q1','connect', document.getElementById('retry1'));
-      if (id === 'section2') drawQuestion('q2','bind', document.getElementById('retry2'));
-      if (id === 'section3') drawQuestion('q3','free', document.getElementById('retry3'));
+
+      if (id === 'section1') {
+        drawQuestion('q1','connect');
+        resetBtns('retry1','next1');
+      }
+      if (id === 'section2') {
+        drawQuestion('q2','bind');
+        resetBtns('retry2','next2');
+      }
+      if (id === 'section3') {
+        drawQuestion('q3','free');
+        resetBtns('retry3','next3');
+      }
     }
 
-    // 랜덤 질문 뽑기 (retry는 1회 제한)
-    function drawQuestion(boxId, category, btn) {
+    // 랜덤 질문 뽑기
+    function drawQuestion(boxId, category) {
       const box = document.getElementById(boxId);
       const qlist = questions[category];
-      const random = qlist[Math.floor(Math.random() * qlist.length)];
-      box.innerHTML = `<p><b>💡 질문:</b> ${random}</p>`;
-      if (btn && btn.dataset.clicked === "true") {
-        btn.disabled = true;
-        btn.classList.add("disabled");
-      } else if (btn) {
-        btn.dataset.clicked = "true"; // 첫 클릭은 허용, 두 번째부터 막힘
-      }
+      const q = qlist[Math.floor(Math.random() * qlist.length)];
+      box.innerHTML = `<p><b>💡 질문:</b> ${q}</p>`;
+    }
+
+    // 다시 뽑기 → 질문 교체 + 버튼 전환
+    function retry(boxId, category, retryId, nextId) {
+      drawQuestion(boxId, category);
+      document.getElementById(retryId).style.display = "none";
+      document.getElementById(nextId).style.display = "inline-block";
+    }
+
+    // 버튼 상태 리셋 (다시뽑기만 보이고 다음으로는 숨김)
+    function resetBtns(retryId, nextId) {
+      document.getElementById(retryId).style.display = "inline-block";
+      document.getElementById(nextId).style.display = "none";
     }
   </script>
 
