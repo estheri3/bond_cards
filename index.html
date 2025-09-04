@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>매듭 Q&A</title>
+  <title>매듭 Q&A 스토리</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- 인트로 -->
+  <!-- 인트로 화면 -->
   <div id="intro" class="section active">
-    <h1>🪢 매듭</h1>
+    <h1>🙏 매듭</h1>
     <p><b>전도서 4장 12절</b><br>
-    "한 사람이면 패하겠거니와 두 사람이면 맞설 수 있나니 <br>
+      "한 사람이면 패하겠거니와 두 사람이면 맞설 수 있나니 <br>
       세 겹 줄은 쉽게 끊어지지 아니하느니라"</p>
     <button onclick="nextSection('section1')">시작하기</button>
   </div>
@@ -22,7 +22,7 @@
     <h2>#1. 매듭 – 연결</h2>
     <div class="card" id="card1">
       <div class="card__face card__face--front">
-        <h2>Bond Card</h2>
+        <button class="open-btn" onclick="flipCard('card1')">카드 열기</button>
       </div>
       <div class="card__face card__face--back" id="q1"></div>
     </div>
@@ -37,7 +37,7 @@
     <h2>#2. 매듭 – 결박</h2>
     <div class="card" id="card2">
       <div class="card__face card__face--front">
-        <h2>Bond Card</h2>
+        <button class="open-btn" onclick="flipCard('card2')">카드 열기</button>
       </div>
       <div class="card__face card__face--back" id="q2"></div>
     </div>
@@ -52,7 +52,7 @@
     <h2>#3. 매듭 – 자유</h2>
     <div class="card" id="card3">
       <div class="card__face card__face--front">
-        <h2>Bond Card</h2>
+        <button class="open-btn" onclick="flipCard('card3')">카드 열기</button>
       </div>
       <div class="card__face card__face--back" id="q3"></div>
     </div>
@@ -62,7 +62,7 @@
     </div>
   </div>
 
-  <!-- 마지막 -->
+  <!-- 마지막 화면 -->
   <div id="final" class="section">
     <h2>마지막 장</h2>
     <p>
