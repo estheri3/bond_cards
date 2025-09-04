@@ -1,12 +1,13 @@
 body {
-  font-family: "Arial", sans-serif;
+  font-family: 'Gamja Flower', cursive;
   text-align: center;
   margin: 0;
   padding: 20px;
   background: #f0f0f5;
+  color: #333;
 }
 
-h1, h2, p {
+h1, h2, h3, p {
   margin-bottom: 15px;
 }
 
@@ -30,6 +31,7 @@ button {
   border-radius: 6px;
   cursor: pointer;
   margin: 10px;
+  transition: all 0.3s ease;
 }
 button:hover {
   background: #483d8b;
@@ -94,4 +96,18 @@ button:hover {
 .open-btn:hover {
   background: #800020;
   color: #fff;
+}
+
+/* 태그 스타일 */
+.tags {
+  margin-top: 10px;
+}
+.tags span {
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 3px 10px;
+  font-size: 0.9em;
+  margin-right: 5px;
+  margin-top: 5px;
 }
