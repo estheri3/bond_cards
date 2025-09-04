@@ -116,3 +116,46 @@ button:hover {
   margin-right: 5px;
   margin-top: 5px;
 }
+
+
+/* 📱 반응형: 모바일 최적화 */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+    font-size: 18px; /* 전체 글씨 살짝 줄이기 */
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+  h2 {
+    font-size: 22px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  p {
+    font-size: 18px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 300px;  /* 작은 화면에 맞춤 */
+    aspect-ratio: 3 / 4;
+  }
+
+  .card__face {
+    padding: 15px; /* 여백 줄여서 글씨 잘 안 짤리게 */
+  }
+
+  button {
+    width: 90%;   /* 버튼 가로 길이 늘리기 */
+    font-size: 16px;
+  }
+
+  .tags span {
+    font-size: 16px;
+    padding: 4px 10px;
+  }
+}
+
