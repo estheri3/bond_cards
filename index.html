@@ -3,51 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>매듭 Q&A 스토리</title>
-  <!-- ✅ 외부 CSS 불러오기 -->
+  <title>매듭 Q&A</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- 인트로 화면 -->
+  <!-- 인트로 -->
   <div id="intro" class="section active">
-    <h1>🙏 매듭</h1>
+    <h1>🪢 매듭</h1>
     <p><b>전도서 4장 12절</b><br>
     "한 사람이면 패하겠거니와 두 사람이면 맞설 수 있나니, 삼겹 줄은 쉽게 끊어지지 아니하느니라"</p>
     <button onclick="nextSection('section1')">시작하기</button>
   </div>
 
-  <!-- 영역 1: 연결 -->
+  <!-- 영역 1 -->
   <div id="section1" class="section">
     <h2>#1. 매듭 – 연결</h2>
-    <div id="q1" class="card"></div>
+    <div class="card" id="card1">
+      <div class="card__face card__face--front">
+        <h2>Bond Card</h2>
+      </div>
+      <div class="card__face card__face--back" id="q1"></div>
+    </div>
     <div class="btn-group">
       <button id="retry1" onclick="retry('q1','connect','retry1','next1')">다시 뽑기</button>
       <button id="next1" onclick="nextSection('section2')" style="display:none">다음으로</button>
     </div>
   </div>
 
-  <!-- 영역 2: 결박 -->
+  <!-- 영역 2 -->
   <div id="section2" class="section">
     <h2>#2. 매듭 – 결박</h2>
-    <div id="q2" class="card"></div>
+    <div class="card" id="card2">
+      <div class="card__face card__face--front">
+        <h2>Bond Card</h2>
+      </div>
+      <div class="card__face card__face--back" id="q2"></div>
+    </div>
     <div class="btn-group">
       <button id="retry2" onclick="retry('q2','bind','retry2','next2')">다시 뽑기</button>
       <button id="next2" onclick="nextSection('section3')" style="display:none">다음으로</button>
     </div>
   </div>
 
-  <!-- 영역 3: 자유 -->
+  <!-- 영역 3 -->
   <div id="section3" class="section">
     <h2>#3. 매듭 – 자유</h2>
-    <div id="q3" class="card"></div>
+    <div class="card" id="card3">
+      <div class="card__face card__face--front">
+        <h2>Bond Card</h2>
+      </div>
+      <div class="card__face card__face--back" id="q3"></div>
+    </div>
     <div class="btn-group">
       <button id="retry3" onclick="retry('q3','free','retry3','next3')">다시 뽑기</button>
       <button id="next3" onclick="nextSection('final')" style="display:none">다음으로</button>
     </div>
   </div>
 
-  <!-- 마지막 화면 -->
+  <!-- 마지막 -->
   <div id="final" class="section">
     <h2>마지막 장</h2>
     <p>
@@ -61,7 +75,6 @@
     <button onclick="nextSection('intro')">처음으로 돌아가기</button>
   </div>
 
-  <!-- ✅ JS 파일 연결 -->
   <script src="script.js"></script>
 </body>
 </html>
