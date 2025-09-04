@@ -1,5 +1,7 @@
 body {
   font-family: 'Gamja Flower', cursive;
+  font-size: 20px;   /* 👉 전체 글씨 기본 크기 */
+  line-height: 1.6;
   text-align: center;
   margin: 0;
   padding: 20px;
@@ -7,24 +9,25 @@ body {
   color: #333;
 }
 
-h1, h2, h3, p {
-  margin-bottom: 15px;
+h1 {
+  font-size: 40px;  /* 가장 큰 제목 */
 }
-
-.section {
-  display: none;
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 20px;
+h2 {
+  font-size: 28px;  /* 중간 제목 */
 }
-
-.active {
-  display: block;
+h3 {
+  font-size: 24px;  /* 👉 Question, Verse 강조 */
+  margin-top: 15px;
+  margin-bottom: 8px;
+}
+p {
+  font-size: 20px;  /* 본문 */
+  margin-bottom: 12px;
 }
 
 button {
-  padding: 12px 20px;
-  font-size: 16px;
+  padding: 14px 22px;
+  font-size: 18px;
   background: #6a5acd;
   color: white;
   border: none;
@@ -40,7 +43,7 @@ button:hover {
 /* 카드 */
 .card {
   width: 90%;
-  max-width: 342px;
+  max-width: 360px; /* 살짝 키움 */
   aspect-ratio: 342 / 504;
   margin: 20px auto;
   perspective: 1000px;
@@ -60,7 +63,7 @@ button:hover {
   backface-visibility: hidden;
   border-radius: 12px;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,12 +83,14 @@ button:hover {
   text-align: left;
   flex-direction: column;
   overflow-y: auto;
+  font-size: 20px; /* 본문 크기 */
+  line-height: 1.6;
 }
 
 /* 카드 열기 버튼 (앞면 중앙) */
 .open-btn {
   padding: 12px 18px;
-  font-size: 18px;
+  font-size: 20px;
   background: #fff;
   color: #800020;
   border: 2px solid #fff;
@@ -106,8 +111,8 @@ button:hover {
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 15px;
-  padding: 3px 10px;
-  font-size: 0.9em;
+  padding: 5px 12px;
+  font-size: 18px;
   margin-right: 5px;
   margin-top: 5px;
 }
