@@ -6,7 +6,9 @@ body {
   background: #f0f0f5;
 }
 
-h1, h2, p { margin-bottom: 15px; }
+h1, h2, p {
+  margin-bottom: 15px;
+}
 
 .section {
   display: none;
@@ -15,7 +17,9 @@ h1, h2, p { margin-bottom: 15px; }
   padding: 20px;
 }
 
-.active { display: block; }
+.active {
+  display: block;
+}
 
 button {
   padding: 12px 20px;
@@ -27,9 +31,11 @@ button {
   cursor: pointer;
   margin: 10px;
 }
-button:hover { background: #483d8b; }
+button:hover {
+  background: #483d8b;
+}
 
-/* 카드 기본 */
+/* 카드 */
 .card {
   width: 90%;
   max-width: 342px;
@@ -37,13 +43,14 @@ button:hover { background: #483d8b; }
   margin: 20px auto;
   perspective: 1000px;
   position: relative;
-  transition: transform 0.6s;
+  transition: transform 0.6s ease;
   transform-style: preserve-3d;
-  cursor: pointer;
 }
+
 .card.is-flipped {
   transform: rotateY(180deg);
 }
+
 .card__face {
   position: absolute;
   width: 100%;
@@ -52,16 +59,15 @@ button:hover { background: #483d8b; }
   border-radius: 12px;
   box-sizing: border-box;
   padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 앞면 */
 .card__face--front {
   background: #800020;
   color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5em;
 }
 
 /* 뒷면 */
@@ -70,17 +76,22 @@ button:hover { background: #483d8b; }
   color: #333;
   transform: rotateY(180deg);
   text-align: left;
-  font-size: 0.9em;
+  flex-direction: column;
   overflow-y: auto;
 }
-.tags {
-  margin-top: 10px;
+
+/* 카드 열기 버튼 (앞면 중앙) */
+.open-btn {
+  padding: 12px 18px;
+  font-size: 18px;
+  background: #fff;
+  color: #800020;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
-.tags span {
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  padding: 3px 10px;
-  font-size: 0.8em;
-  margin-right: 5px;
+.open-btn:hover {
+  background: #800020;
+  color: #fff;
 }
