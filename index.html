@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>매듭 Q&A 스토리</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+      background: #f0f0f5;
+    }
+    h1, h2, p { margin-bottom: 15px; }
+    .section {
+      display: none;
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    }
+    .active { display: block; }
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      background: #6a5acd;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    button:hover { background: #483d8b; }
+    .disabled {
+      background: gray !important;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 인트로 화면 -->
+  <div id="intro" class="section active">
+    <h1>🙏 매듭</h1>
+    <p><b>전도서 4장 12절</b><br>
+    "한 사람이면 패하겠거니와 두 사람이면 맞설 수 있나니, 삼겹 줄은 쉽게 끊어지지 아니하느니라"</p>
+    <button onclick="nextSection('section1')">시작하기</button>
+  </div>
+
+  <!-- 영역 1: 연결 -->
+  <div id="section1" class="section">
+    <h2>#1. 매듭 – 연결</h2>
+    <p>매듭은 <b>연결</b>을 의미합니다.<br>  
+    나와 공동체, 나와 하나님과의 연결에 대해 나눠봅시다.</p>
+    <div id="q1" class="question-box"></div>
+    <button id="retry1" onclick="drawQuestion('q1','connect', this)" >다시 뽑기</button>
+    <button onclick="nextSection('section2')">다음으로</button>
+  </div>
+
+  <!-- 영역 2: 결박 -->
+  <div id="section2" class="section">
+    <h2>#2. 매듭 – 결박</h2>
+    <p>매듭은 때로는 <b>결박</b>을 의미합니다.<br>  
+    우리 삶 가운데 있는 매듭들에 대해 나눠봅시다.</p>
+    <div id="q2" class="question-box"></div>
+    <button id="retry2" onclick="drawQuestion('q2','bind', this)" >다시 뽑기</button>
+    <button onclick="nextSection('section3')">다음으로</button>
+  </div>
+
+  <!-- 영역 3: 자유 -->
+  <div id="section3" class="section">
+    <h2>#3. 매듭 – 자유</h2>
+    <p>하나님께서는 우리를 우리의 매듭으로부터 <b>자유</b>케 하시고<br>  
+    하나님께로 새로운 매듭을 지어주십니다.</p>
+    <div id="q3" class="question-box"></div>
+    <button id="retry3" onclick="drawQuestion('q3','free', this)" >다시 뽑기</button>
+    <button onclick="nextSection('final')">다음으로</button>
+  </div>
+
+  <!-- 마지막 화면 -->
+  <div id="final" class="section">
+    <h2>마지막 장</h2>
+    <p>
+      매듭은 좋은 시작을 위해서도, 좋은 마무리를 위해서도 필요합니다.<br><br>
+      각자의 삶 가운데 풀고 싶은 매듭들이 있을 수 있고,<br>
+      붙잡고 싶은 매듭들이 있을 수도 있습니다.<br><br>
+      이렇게 시작된 우리의 모임이 캠퍼스에 복음을 전하는 시작,<br>
+      선교의 매듭으로 사용될 줄 믿습니다.<br><br>
+      함께 기도하며 나아가는 하늘이들 되길 축복합니다. 🙏
+    </p>
+    <button onclick="nextSection('intro')">처음으로 돌아가기</button>
+  </div>
+
+  <script>
+    // 질문 풀
+    const questions = {
+      connect: [
+        "나와 하나님을 이어주는 매듭 같은 순간은 언제였나요?",
+        "공동체 안에서 서로 묶여 있다는 것을 강하게 느낀 경험은?",
+        "내 삶에서 끊어지지 않고 이어져야 할 신앙의 매듭은 무엇인가요?",
+        "나를 지금 이 자리에 있게 한 매듭 같은 관계는 누구인가요?",
+        "신앙 생활에서 매듭처럼 단단히 이어진 습관은 무엇인가요?"
+      ],
+      bind: [
+        "내 삶에서 풀리지 않은 매듭(문제)은 무엇인가요?",
+        "내 마음을 꽉 묶고 있는 근심은 무엇인가요?",
+        "죄의 습관이라는 매듭이 나를 묶고 있다고 느낀 적 있나요?",
+        "혼자서는 풀 수 없었던 매듭 같은 경험은 무엇인가요?",
+        "복잡하게 얽힌 관계나 상황이 매듭처럼 느껴진 적 있나요?"
+      ],
+      free: [
+        "하나님께서 내 삶에서 풀어주신 매듭은 무엇인가요?",
+        "매듭이 풀리듯 내 마음이 가벼워졌던 순간은 언제였나요?",
+        "용서를 통해 풀린 매듭 같은 경험이 있나요?",
+        "예수님께서 나를 자유케 하셨음을 경험한 적 있나요?",
+        "자유롭게 된다는 것은 내 삶에서 어떤 의미인가요?"
+      ]
+    };
+
+    // 현재 보여줄 섹션 관리
+    function nextSection(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      if (id === 'section1') drawQuestion('q1','connect', document.getElementById('retry1'));
+      if (id === 'section2') drawQuestion('q2','bind', document.getElementById('retry2'));
+      if (id === 'section3') drawQuestion('q3','free', document.getElementById('retry3'));
+    }
+
+    // 랜덤 질문 뽑기 (retry는 1회 제한)
+    function drawQuestion(boxId, category, btn) {
+      const box = document.getElementById(boxId);
+      const qlist = questions[category];
+      const random = qlist[Math.floor(Math.random() * qlist.length)];
+      box.innerHTML = `<p><b>💡 질문:</b> ${random}</p>`;
+      if (btn && btn.dataset.clicked === "true") {
+        btn.disabled = true;
+        btn.classList.add("disabled");
+      } else if (btn) {
+        btn.dataset.clicked = "true"; // 첫 클릭은 허용, 두 번째부터 막힘
+      }
+    }
+  </script>
+
+</body>
+</html>
