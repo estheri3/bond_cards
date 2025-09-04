@@ -41,7 +41,7 @@ button:hover {
 .card {
   width: 90%;
   max-width: 342px;
-  aspect-ratio: 342 / 504;
+  aspect-ratio: 342 / 504;  /* 가로:세로 비율 유지 */
   margin: 20px auto;
   background: #fff;
   border-radius: 12px;
