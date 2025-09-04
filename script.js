@@ -71,6 +71,7 @@ function drawQuestion(boxId, category) {
   `;
 
   const card = box.closest('.card');
+  const card = document.getElementById(cardId);
   setTimeout(() => {
     card.classList.add('is-flipped');
   }, 300);
