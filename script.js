@@ -47,14 +47,11 @@ function nextSection(id) {
   }
 }
 
-// 카드 클릭 → 플립
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-      card.classList.toggle('is-flipped');
-    });
-  });
-});
+// 카드 열기 버튼 클릭 시 뒤집기
+function flipCard(cardId) {
+  const card = document.getElementById(cardId);
+  card.classList.add('is-flipped');
+}
 
 // 질문 뽑기
 function drawQuestion(boxId, category) {
@@ -69,14 +66,7 @@ function drawQuestion(boxId, category) {
     <p>${qobj.verse}</p>
     <div class="tags">${qobj.tags.map(t=>`<span>${t}</span>`).join('')}</div>
   `;
-
-  const card = box.closest('.card');
-  const card = document.getElementById(cardId);
-  setTimeout(() => {
-    card.classList.add('is-flipped');
-  }, 300);
 }
-
 
 // 다시 뽑기 → 질문 교체 + 버튼 전환
 function retry(boxId, category, retryId, nextId) {
@@ -85,7 +75,7 @@ function retry(boxId, category, retryId, nextId) {
   document.getElementById(nextId).style.display = "inline-block";
 }
 
-// 버튼 상태 초기화
+// 버튼 초기화
 function resetBtns(retryId, nextId) {
   document.getElementById(retryId).style.display = "inline-block";
   document.getElementById(nextId).style.display = "none";
