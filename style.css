@@ -1,6 +1,6 @@
 body {
   font-family: 'Gamja Flower', cursive;
-  font-size: 20px;   /* 👉 전체 글씨 기본 크기 */
+  font-size: 20px;
   line-height: 1.6;
   text-align: center;
   margin: 0;
@@ -10,19 +10,29 @@ body {
 }
 
 h1 {
-  font-size: 40px;  /* 가장 큰 제목 */
+  font-size: 40px;
 }
 h2 {
-  font-size: 28px;  /* 중간 제목 */
+  font-size: 28px;
 }
 h3 {
-  font-size: 24px;  /* 👉 Question, Verse 강조 */
+  font-size: 24px;
   margin-top: 15px;
   margin-bottom: 8px;
 }
 p {
-  font-size: 20px;  /* 본문 */
+  font-size: 20px;
   margin-bottom: 12px;
+}
+
+.section {
+  display: none;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.active {
+  display: block;
 }
 
 button {
@@ -43,7 +53,7 @@ button:hover {
 /* 카드 */
 .card {
   width: 90%;
-  max-width: 360px; /* 살짝 키움 */
+  max-width: 360px;
   aspect-ratio: 342 / 504;
   margin: 20px auto;
   perspective: 1000px;
@@ -51,11 +61,9 @@ button:hover {
   transition: transform 0.6s ease;
   transform-style: preserve-3d;
 }
-
 .card.is-flipped {
   transform: rotateY(180deg);
 }
-
 .card__face {
   position: absolute;
   width: 100%;
@@ -68,13 +76,11 @@ button:hover {
   justify-content: center;
   align-items: center;
 }
-
 /* 앞면 */
 .card__face--front {
   background: #800020;
   color: #fff;
 }
-
 /* 뒷면 */
 .card__face--back {
   background: #fff;
@@ -83,7 +89,7 @@ button:hover {
   text-align: left;
   flex-direction: column;
   overflow-y: auto;
-  font-size: 20px; /* 본문 크기 */
+  font-size: 20px;
   line-height: 1.6;
 }
 
@@ -116,46 +122,3 @@ button:hover {
   margin-right: 5px;
   margin-top: 5px;
 }
-
-
-/* 📱 반응형: 모바일 최적화 */
-@media (max-width: 600px) {
-  body {
-    padding: 10px;
-    font-size: 18px; /* 전체 글씨 살짝 줄이기 */
-  }
-
-  h1 {
-    font-size: 28px;
-  }
-  h2 {
-    font-size: 22px;
-  }
-  h3 {
-    font-size: 20px;
-  }
-  p {
-    font-size: 18px;
-  }
-
-  .card {
-    width: 100%;
-    max-width: 300px;  /* 작은 화면에 맞춤 */
-    aspect-ratio: 3 / 4;
-  }
-
-  .card__face {
-    padding: 15px; /* 여백 줄여서 글씨 잘 안 짤리게 */
-  }
-
-  button {
-    width: 90%;   /* 버튼 가로 길이 늘리기 */
-    font-size: 16px;
-  }
-
-  .tags span {
-    font-size: 16px;
-    padding: 4px 10px;
-  }
-}
-
