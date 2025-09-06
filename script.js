@@ -50,10 +50,16 @@ function nextSection(id) {
   }
 }
 
-// 카드 열기 버튼 클릭 시 플립
+// 카드 열기 버튼 클릭 시 플립 + 다음으로 버튼 보이기
 function flipCard(cardId) {
   const cardElement = document.getElementById(cardId);
   cardElement.classList.add('is-flipped');
+
+  // 해당 카드의 "next" 버튼 보이기
+  const nextBtn = cardElement.parentElement.querySelector('button[id^="next"]');
+  if (nextBtn) {
+    nextBtn.style.display = "inline-block";
+  }
 }
 
 // 질문 뽑기 (이전 질문 제외)
@@ -82,11 +88,11 @@ function drawQuestion(boxId, category) {
   cardElement.classList.remove('is-flipped');
 }
 
-// 다시 뽑기 → 질문 교체 + 버튼 전환
+// 다시 뽑기 → 새로운 질문 뽑고 카드 닫기
 function retry(boxId, category, retryId, nextId) {
   drawQuestion(boxId, category);
   document.getElementById(retryId).style.display = "none";
-  document.getElementById(nextId).style.display = "inline-block";
+  document.getElementById(nextId).style.display = "none"; // 숨김
 }
 
 // 버튼 초기화
