@@ -50,7 +50,7 @@ function nextSection(id) {
   }
 }
 
-// 카드 열기 버튼 클릭 시 플립 + 다음으로 버튼 보이기
+// 카드 클릭 시 플립 + 다음으로 버튼 보이기
 function flipCard(cardId) {
   const cardElement = document.getElementById(cardId);
   cardElement.classList.add('is-flipped');
