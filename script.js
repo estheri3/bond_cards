@@ -3,7 +3,7 @@ const questions = {
   connect: [
     {
       q: "나와 하나님을 이어주는 매듭 같은 순간은 언제였나요?",
-      verse: "나는 확신합니다. 사망이나 생명이나 천사들이나 권세자들이나 ... 우리를 그리스도 예수 안에 있는 하나님의 사랑에서 끊을 수 없으리라 (로마서 8:38-39)",
+      verse: "나는 확신합니다. 사망이나 생명이나 천사들이나 권세자들이나 ... (로마서 8:38-39)",
       tags: ["#하나님", "#매듭", "#연결"]
     },
     {
@@ -31,44 +31,34 @@ const questions = {
 // 마지막으로 뽑힌 질문 인덱스 저장
 const lastPicked = { connect: null, bind: null, free: null };
 
-// 섹션 전환 (질문은 세팅하지 않고 버튼 초기화만)
+// 섹션 전환
 function nextSection(id) {
   document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 
-  if (id === 'section1') resetBtns('retry1','next1');
-  if (id === 'section2') resetBtns('retry2','next2');
-  if (id === 'section3') resetBtns('retry3','next3');
+  if (id === 'section1') {
+    drawQuestion('q1','connect');
+    resetBtns('retry1','next1');
+  }
+  if (id === 'section2') {
+    drawQuestion('q2','bind');
+    resetBtns('retry2','next2');
+  }
+  if (id === 'section3') {
+    drawQuestion('q3','free');
+    resetBtns('retry3','next3');
+  }
 }
 
-// 카드 클릭 → 질문 세팅 + 플립
-function flipCard(cardId, event) {
-  if (event) event.preventDefault();
+// 카드 클릭 → 플립
+function flipCard(cardId) {
   const cardElement = document.getElementById(cardId);
-
-  // 카드 뒷면 id 확인해서 카테고리 결정
-  const boxId = cardElement.querySelector('.card__face--back').id;
-  let category = null;
-  if (boxId === 'q1') category = 'connect';
-  if (boxId === 'q2') category = 'bind';
-  if (boxId === 'q3') category = 'free';
-
-  // 질문 세팅
-  if (category) {
-    drawQuestion(boxId, category);
-  }
-
-  // 카드 플립
-  cardElement.classList.add('is-flipped');
-
-  // "다음으로" 버튼 보이기
+  cardElement.classList.toggle('is-flipped');
   const nextBtn = cardElement.parentElement.querySelector('button[id^="next"]');
-  if (nextBtn) {
-    nextBtn.style.display = "inline-block";
-  }
+  if (nextBtn) nextBtn.style.display = "inline-block";
 }
 
-// 질문 뽑기 (이전 질문 제외)
+// 질문 뽑기
 function drawQuestion(boxId, category) {
   const box = document.getElementById(boxId);
   const qlist = questions[category];
@@ -88,17 +78,15 @@ function drawQuestion(boxId, category) {
     <p>${qobj.verse}</p>
     <div class="tags">${qobj.tags.map(t=>`<span>${t}</span>`).join('')}</div>
   `;
-
-  // 다시 뽑기 시 → 카드 닫기
-  const cardElement = box.closest('.card');
-  cardElement.classList.remove('is-flipped');
 }
 
-// 다시 뽑기 → 새로운 질문 뽑고 카드 닫기
+// 다시 뽑기
 function retry(boxId, category, retryId, nextId) {
   drawQuestion(boxId, category);
+  const cardElement = document.getElementById(boxId).closest('.card');
+  cardElement.classList.remove('is-flipped'); // 다시 앞면으로
   document.getElementById(retryId).style.display = "none";
-  document.getElementById(nextId).style.display = "none"; // 숨김
+  document.getElementById(nextId).style.display = "none";
 }
 
 // 버튼 초기화
