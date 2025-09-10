@@ -1,4 +1,3 @@
-// 질문 + 말씀 + 태그 데이터
 const questions = {
   connect: [
     {
@@ -22,7 +21,7 @@ const questions = {
   free: [
     {
       q: "하나님께서 내 삶에서 풀어주신 매듭은 무엇인가요?",
-      verse: "진리를 알지니 진리가 너희를 자유롭게 하리라 (요한복음 8:32)",
+      verse: "진리를 알지니 진리가 너희를 자유롭게 하리라 (요 8:32)",
       tags: ["#자유", "#해방"]
     }
   ]
@@ -30,7 +29,7 @@ const questions = {
 
 const lastPicked = { connect: null, bind: null, free: null };
 
-// 섹션 전환 → 버튼 전부 숨김
+// 섹션 전환 → 버튼 숨김
 function nextSection(id) {
   document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -40,28 +39,21 @@ function nextSection(id) {
   if (id === 'section3') hideBtns('retry3','next3');
 }
 
-// 카드 클릭 → 질문 세팅 + 플립 + "다시 뽑기" 버튼 나타남
-function flipCard(cardId) {
+// 카드 플립 (click + touch 지원)
+function enableCardFlip(cardId, boxId, category, retryId, nextId) {
   const cardElement = document.getElementById(cardId);
-  const backFace = cardElement.querySelector('.card__face--back .question-box');
-  const boxId = backFace ? backFace.id : null;
 
-  let category = null;
-  if (boxId === 'q1') category = 'connect';
-  if (boxId === 'q2') category = 'bind';
-  if (boxId === 'q3') category = 'free';
-
-  if (category) {
+  const flipHandler = () => {
     drawQuestion(boxId, category);
-  }
+    cardElement.classList.add('is-flipped');
 
-  cardElement.classList.add('is-flipped');
+    // 질문 나오면 다시뽑기 버튼만 보이기
+    document.getElementById(retryId).style.display = "inline-block";
+    document.getElementById(nextId).style.display = "none";
+  };
 
-  // 질문이 처음 뜨는 순간 → "다시 뽑기" 버튼만 보여줌
-  const retryBtn = cardElement.parentElement.querySelector('button[id^="retry"]');
-  const nextBtn = cardElement.parentElement.querySelector('button[id^="next"]');
-  if (retryBtn) retryBtn.style.display = "inline-block";
-  if (nextBtn) nextBtn.style.display = "none";
+  cardElement.addEventListener("click", flipHandler);
+  cardElement.addEventListener("touchstart", flipHandler);
 }
 
 // 질문 뽑기
@@ -86,15 +78,22 @@ function drawQuestion(boxId, category) {
   `;
 }
 
-// 다시 뽑기 → 새로운 질문 + "다시 뽑기" 숨기고 "다음으로" 보이기
+// 다시 뽑기 → 새로운 질문 + 다음으로 버튼
 function retry(boxId, category, retryId, nextId) {
   drawQuestion(boxId, category);
   document.getElementById(retryId).style.display = "none";
   document.getElementById(nextId).style.display = "inline-block";
 }
 
-// 버튼 숨기기
+// 버튼 숨김
 function hideBtns(retryId, nextId) {
   document.getElementById(retryId).style.display = "none";
   document.getElementById(nextId).style.display = "none";
 }
+
+// 초기화
+document.addEventListener("DOMContentLoaded", () => {
+  enableCardFlip("card1", "q1", "connect", "retry1", "next1");
+  enableCardFlip("card2", "q2", "bind", "retry2", "next2");
+  enableCardFlip("card3", "q3", "free", "retry3", "next3");
+});
