@@ -74,6 +74,7 @@ button:hover { background: #483d8b; }
   object-fit: cover;
   border-radius: 12px;
   z-index: 0;
+  pointer-events: none; /* 이미지 클릭 이벤트 차단 */
 }
 
 /* 뒷면 */
@@ -110,4 +111,9 @@ button:hover { background: #483d8b; }
   text-align: center;
   position: relative;
   z-index: 10;
+}
+
+/* 카드 드래그 방지 */
+.card, .card * {
+  user-select: none;
 }
