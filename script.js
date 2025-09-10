@@ -44,6 +44,9 @@ function enableCardFlip(cardId, boxId, category, retryId, nextId) {
   const cardElement = document.getElementById(cardId);
 
   const flipHandler = () => {
+    // 이미 뒷면이라면 무시
+    if (cardElement.classList.contains("is-flipped")) return;
+
     drawQuestion(boxId, category);
     cardElement.classList.add('is-flipped');
 
@@ -78,14 +81,34 @@ function drawQuestion(boxId, category) {
   `;
 }
 
-// 다시 뽑기 → 새로운 질문 + 다음으로 버튼
+// 다시 뽑기 → 앞면으로 돌리고, 다음 클릭 시 새 질문 나오도록
 function retry(boxId, category, retryId, nextId) {
-  drawQuestion(boxId, category);
+  const cardElement = document.getElementById(boxId).closest(".card");
+  cardElement.classList.remove("is-flipped"); // 앞면으로 돌림
+
+  // 새로운 질문 미리 저장
+  const qlist = questions[category];
+  let randomIndex;
+  do {
+    randomIndex = Math.floor(Math.random() * qlist.length);
+  } while (randomIndex === lastPicked[category] && qlist.length > 1);
+
+  lastPicked[category] = randomIndex;
+  const qobj = qlist[randomIndex];
+  document.getElementById(boxId).innerHTML = `
+    <h3>Question</h3>
+    <p>${qobj.q}</p>
+    <h3>Verse</h3>
+    <p>${qobj.verse}</p>
+    <div class="tags">${qobj.tags.map(t=>`<span>${t}</span>`).join('')}</div>
+  `;
+
+  // 버튼 전환: retry 숨기고 next 표시
   document.getElementById(retryId).style.display = "none";
   document.getElementById(nextId).style.display = "inline-block";
 }
 
-// 버튼 숨김
+// 버튼 숨기기
 function hideBtns(retryId, nextId) {
   document.getElementById(retryId).style.display = "none";
   document.getElementById(nextId).style.display = "none";
