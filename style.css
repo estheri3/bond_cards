@@ -45,6 +45,7 @@ button:hover { background: #483d8b; }
   position: relative;
   transition: transform 0.6s ease;
   transform-style: preserve-3d;
+  cursor: pointer; /* 마우스 올리면 손 모양 */
 }
 .card.is-flipped { transform: rotateY(180deg); }
 
@@ -72,19 +73,6 @@ button:hover { background: #483d8b; }
   object-fit: cover;
   border-radius: 12px;
   z-index: 0;
-}
-.card__face--front .open-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(255,255,255,0.9);
-  color: #800020;
-  font-size: 20px;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 24px;
-  z-index: 1;
 }
 
 /* 뒷면 */
@@ -120,5 +108,5 @@ button:hover { background: #483d8b; }
   margin-top: 20px;
   text-align: center;
   position: relative;
-  z-index: 2;
+  z-index: 10;
 }
