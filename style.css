@@ -10,8 +10,8 @@ body {
 }
 
 h1 { font-size: 40px; }
-h2 { font-size: 28px; margin-bottom: 20px; }
-h3 { font-size: 24px; margin: 15px 0 8px; }
+h2 { font-size: 28px; }
+h3 { font-size: 24px; margin-top: 15px; margin-bottom: 8px; }
 p { font-size: 20px; margin-bottom: 12px; }
 
 .section {
@@ -33,7 +33,9 @@ button {
   margin: 10px;
   transition: all 0.3s ease;
 }
-button:hover { background: #483d8b; }
+button:hover {
+  background: #483d8b;
+}
 
 /* 카드 */
 .card {
@@ -43,6 +45,11 @@ button:hover { background: #483d8b; }
   margin: 20px auto;
   perspective: 1000px;
   position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+.card.is-flipped {
+  transform: rotateY(180deg);
 }
 .card__face {
   position: absolute;
@@ -51,11 +58,12 @@ button:hover { background: #483d8b; }
   backface-visibility: hidden;
   border-radius: 12px;
   box-sizing: border-box;
-  padding: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
+/* 앞면 */
 .card__face--front {
   background: #f8d7da;
 }
@@ -65,24 +73,16 @@ button:hover { background: #483d8b; }
   object-fit: cover;
   border-radius: 12px;
 }
+/* 뒷면 */
 .card__face--back {
   background: #fff;
   color: #333;
   transform: rotateY(180deg);
-  text-align: center;
   flex-direction: column;
+  text-align: left;
   overflow-y: auto;
   font-size: 20px;
   line-height: 1.6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.card.is-flipped {
-  transform: rotateY(180deg);
-  transition: transform 0.6s ease;
-  transform-style: preserve-3d;
 }
 
 /* 태그 */
