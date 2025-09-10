@@ -30,21 +30,19 @@ const questions = {
 
 const lastPicked = { connect: null, bind: null, free: null };
 
-// 섹션 전환 → 버튼 초기화 (버튼 안 보이게)
+// 섹션 전환 → 버튼 전부 숨김
 function nextSection(id) {
   document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 
-  // 버튼들 초기화
   if (id === 'section1') hideBtns('retry1','next1');
   if (id === 'section2') hideBtns('retry2','next2');
   if (id === 'section3') hideBtns('retry3','next3');
 }
 
-// 카드 클릭 → 질문 세팅 + 플립 + "다시 뽑기" 버튼만 보이기
+// 카드 클릭 → 질문 세팅 + 플립 + "다시 뽑기" 버튼 나타남
 function flipCard(cardId) {
   const cardElement = document.getElementById(cardId);
-
   const backFace = cardElement.querySelector('.card__face--back .question-box');
   const boxId = backFace ? backFace.id : null;
 
@@ -59,7 +57,7 @@ function flipCard(cardId) {
 
   cardElement.classList.add('is-flipped');
 
-  // 카드 클릭 → "다시 뽑기" 버튼만 보이기
+  // 질문이 처음 뜨는 순간 → "다시 뽑기" 버튼만 보여줌
   const retryBtn = cardElement.parentElement.querySelector('button[id^="retry"]');
   const nextBtn = cardElement.parentElement.querySelector('button[id^="next"]');
   if (retryBtn) retryBtn.style.display = "inline-block";
