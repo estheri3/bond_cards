@@ -3,19 +3,19 @@ const questions = {
   connect: [
     {
       q: "나와 하나님을 이어주는 매듭 같은 순간은 언제였나요?",
-      verse: "나는 확신합니다. 사망이나 생명이나 천사들이나 권세자들이나 ... (로마서 8:38-39)",
+      verse: "나는 확신합니다... (로마서 8:38-39)",
       tags: ["#하나님", "#매듭", "#연결"]
     },
     {
       q: "공동체 안에서 서로 묶여 있다는 것을 느낀 경험은?",
-      verse: "두 사람이면 맞설 수 있나니 삼겹 줄은 쉽게 끊어지지 아니하느니라 (전도서 4:12)",
+      verse: "두 사람이면 맞설 수 있나니... (전도서 4:12)",
       tags: ["#공동체", "#연결"]
     }
   ],
   bind: [
     {
       q: "내 삶에서 풀리지 않은 매듭(문제)은 무엇인가요?",
-      verse: "내가 원하는 바 선은 행하지 아니하고 도리어 원하지 아니하는 바 악을 행하는도다 (로마서 7:19)",
+      verse: "내가 원하는 바 선은 행하지 아니하고... (로마서 7:19)",
       tags: ["#문제", "#결박"]
     }
   ],
@@ -28,34 +28,42 @@ const questions = {
   ]
 };
 
-// 마지막으로 뽑힌 질문 인덱스 저장
 const lastPicked = { connect: null, bind: null, free: null };
 
-// 섹션 전환
+// 섹션 전환 → 버튼 초기화 (버튼 안 보이게)
 function nextSection(id) {
   document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 
-  if (id === 'section1') {
-    drawQuestion('q1','connect');
-    resetBtns('retry1','next1');
-  }
-  if (id === 'section2') {
-    drawQuestion('q2','bind');
-    resetBtns('retry2','next2');
-  }
-  if (id === 'section3') {
-    drawQuestion('q3','free');
-    resetBtns('retry3','next3');
-  }
+  // 버튼들 초기화
+  if (id === 'section1') hideBtns('retry1','next1');
+  if (id === 'section2') hideBtns('retry2','next2');
+  if (id === 'section3') hideBtns('retry3','next3');
 }
 
-// 카드 클릭 → 플립
+// 카드 클릭 → 질문 세팅 + 플립 + "다시 뽑기" 버튼만 보이기
 function flipCard(cardId) {
   const cardElement = document.getElementById(cardId);
-  cardElement.classList.toggle('is-flipped');
+
+  const backFace = cardElement.querySelector('.card__face--back .question-box');
+  const boxId = backFace ? backFace.id : null;
+
+  let category = null;
+  if (boxId === 'q1') category = 'connect';
+  if (boxId === 'q2') category = 'bind';
+  if (boxId === 'q3') category = 'free';
+
+  if (category) {
+    drawQuestion(boxId, category);
+  }
+
+  cardElement.classList.add('is-flipped');
+
+  // 카드 클릭 → "다시 뽑기" 버튼만 보이기
+  const retryBtn = cardElement.parentElement.querySelector('button[id^="retry"]');
   const nextBtn = cardElement.parentElement.querySelector('button[id^="next"]');
-  if (nextBtn) nextBtn.style.display = "inline-block";
+  if (retryBtn) retryBtn.style.display = "inline-block";
+  if (nextBtn) nextBtn.style.display = "none";
 }
 
 // 질문 뽑기
@@ -80,19 +88,15 @@ function drawQuestion(boxId, category) {
   `;
 }
 
-// 다시 뽑기
+// 다시 뽑기 → 새로운 질문 + "다시 뽑기" 숨기고 "다음으로" 보이기
 function retry(boxId, category, retryId, nextId) {
   drawQuestion(boxId, category);
-  const cardElement = document.getElementById(boxId).closest('.card');
-  cardElement.classList.remove('is-flipped'); // 다시 앞면으로
+  document.getElementById(retryId).style.display = "none";
+  document.getElementById(nextId).style.display = "inline-block";
+}
+
+// 버튼 숨기기
+function hideBtns(retryId, nextId) {
   document.getElementById(retryId).style.display = "none";
   document.getElementById(nextId).style.display = "none";
 }
-
-// 버튼 초기화
-function resetBtns(retryId, nextId) {
-  document.getElementById(retryId).style.display = "inline-block";
-  document.getElementById(nextId).style.display = "none";
-}
-
-console.log("✅ script.js loaded");
