@@ -17,7 +17,7 @@
       "한 사람이면 패하겠거니와 두 사람이면 맞설 수 있나니 <br>
       세 겹 줄은 쉽게 끊어지지 아니하느니라"
     </p>
-    <button onclick="nextSection('section1')">시작하기</button>
+    <button type="button" onclick="nextSection('section1')">시작하기</button>
   </div>
 
   <!-- 영역 1 -->
@@ -26,13 +26,13 @@
     <div class="card" id="card1">
       <div class="card__face card__face--front">
         <img src="images/12.png" alt="Front Design" class="card-front-img">
-        <button class="open-btn" onclick="flipCard('card1')">카드 열기</button>
+        <button type="button" class="open-btn" onclick="flipCard('card1')">카드 열기</button>
       </div>
       <div class="card__face card__face--back" id="q1"></div>
     </div>
     <div class="btn-group">
-      <button id="retry1" onclick="retry('q1','connect','retry1','next1')">다시 뽑기</button>
-      <button id="next1" onclick="nextSection('section2')" style="display:none">다음으로</button>
+      <button type="button" id="retry1" onclick="retry('q1','connect','retry1','next1')">다시 뽑기</button>
+      <button type="button" id="next1" onclick="nextSection('section2')" style="display:none">다음으로</button>
     </div>
   </div>
 
@@ -42,13 +42,13 @@
     <div class="card" id="card2">
       <div class="card__face card__face--front">
         <img src="images/15.png" alt="Front Design" class="card-front-img">
-        <button class="open-btn" onclick="flipCard('card2')">카드 열기</button>
+        <button type="button" class="open-btn" onclick="flipCard('card2')">카드 열기</button>
       </div>
       <div class="card__face card__face--back" id="q2"></div>
     </div>
     <div class="btn-group">
-      <button id="retry2" onclick="retry('q2','bind','retry2','next2')">다시 뽑기</button>
-      <button id="next2" onclick="nextSection('section3')" style="display:none">다음으로</button>
+      <button type="button" id="retry2" onclick="retry('q2','bind','retry2','next2')">다시 뽑기</button>
+      <button type="button" id="next2" onclick="nextSection('section3')" style="display:none">다음으로</button>
     </div>
   </div>
 
@@ -58,13 +58,13 @@
     <div class="card" id="card3">
       <div class="card__face card__face--front">
         <img src="images/12.png" alt="Front Design" class="card-front-img">
-        <button class="open-btn" onclick="flipCard('card3')">카드 열기</button>
+        <button type="button" class="open-btn" onclick="flipCard('card3')">카드 열기</button>
       </div>
       <div class="card__face card__face--back" id="q3"></div>
     </div>
     <div class="btn-group">
-      <button id="retry3" onclick="retry('q3','free','retry3','next3')">다시 뽑기</button>
-      <button id="next3" onclick="nextSection('final')" style="display:none">다음으로</button>
+      <button type="button" id="retry3" onclick="retry('q3','free','retry3','next3')">다시 뽑기</button>
+      <button type="button" id="next3" onclick="nextSection('final')" style="display:none">다음으로</button>
     </div>
   </div>
 
@@ -77,7 +77,7 @@
       이렇게 시작된 우리의 모임이 캠퍼스에 복음을 전하는 시작, 선교의 매듭으로 사용될 줄 믿습니다.<br><br>
       함께 기도하며 나아가는 하늘이들 되길 축복합니다. 🙏
     </p>
-    <button onclick="nextSection('intro')">처음으로 돌아가기</button>
+    <button type="button" onclick="nextSection('intro')">처음으로 돌아가기</button>
   </div>
 
   <script src="script.js"></script>
