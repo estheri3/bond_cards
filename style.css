@@ -39,13 +39,14 @@ button:hover { background: #483d8b; }
 .card {
   width: 90%;
   max-width: 360px;
-  aspect-ratio: 342 / 504;
+  height: 500px;       /* 고정 높이 */
   margin: 20px auto;
   perspective: 1000px;
   position: relative;
   transition: transform 0.6s ease;
   transform-style: preserve-3d;
-  cursor: pointer; /* 마우스 올리면 손 모양 */
+  cursor: pointer;
+  overflow: hidden;    /* 카드 영역 밖 내용 숨기기 */
 }
 .card.is-flipped { transform: rotateY(180deg); }
 
