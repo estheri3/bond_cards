@@ -8,7 +8,7 @@ const questions = {
     },
     {
       q: "공동체 안에서 서로 묶여 있다는 것을 느낀 경험은?",
-      verse: "이 모든 것 위에 사랑을 더하라 이는 온전하게 매는 띠니라 (골로새서 3:14)",
+      verse: "두 사람이면 맞설 수 있나니 삼겹 줄은 쉽게 끊어지지 아니하느니라 (전도서 4:12)",
       tags: ["#공동체", "#연결"]
     }
   ],
@@ -31,29 +31,34 @@ const questions = {
 // 마지막으로 뽑힌 질문 인덱스 저장
 const lastPicked = { connect: null, bind: null, free: null };
 
-// 섹션 전환
+// 섹션 전환 (질문은 세팅하지 않고 버튼 초기화만)
 function nextSection(id) {
   document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 
-  if (id === 'section1') {
-    drawQuestion('q1','connect');
-    resetBtns('retry1','next1');
-  }
-  if (id === 'section2') {
-    drawQuestion('q2','bind');
-    resetBtns('retry2','next2');
-  }
-  if (id === 'section3') {
-    drawQuestion('q3','free');
-    resetBtns('retry3','next3');
-  }
+  if (id === 'section1') resetBtns('retry1','next1');
+  if (id === 'section2') resetBtns('retry2','next2');
+  if (id === 'section3') resetBtns('retry3','next3');
 }
 
-// 카드 클릭 → 플립
+// 카드 클릭 → 질문 세팅 + 플립
 function flipCard(cardId, event) {
-  if (event) event.preventDefault();  // 기본 스크롤 방지
+  if (event) event.preventDefault();
   const cardElement = document.getElementById(cardId);
+
+  // 카드 뒷면 id 확인해서 카테고리 결정
+  const boxId = cardElement.querySelector('.card__face--back').id;
+  let category = null;
+  if (boxId === 'q1') category = 'connect';
+  if (boxId === 'q2') category = 'bind';
+  if (boxId === 'q3') category = 'free';
+
+  // 질문 세팅
+  if (category) {
+    drawQuestion(boxId, category);
+  }
+
+  // 카드 플립
   cardElement.classList.add('is-flipped');
 
   // "다음으로" 버튼 보이기
