@@ -151,6 +151,7 @@ function enableCardFlip(cardId, boxId, category, retryId, nextId) {
     drawQuestion(boxId, category);
     cardElement.classList.add('is-flipped');
 
+    // 첫 플립에서는 retry만
     document.getElementById(retryId).style.display = "inline-block";
     document.getElementById(nextId).style.display = "none";
   };
@@ -203,6 +204,7 @@ function retry(boxId, category, retryId, nextId) {
     <div class="tags">${qobj.tags.map(t=>`<span>${t}</span>`).join('')}</div>
   `;
 
+  // 다시 뽑기 후 → retry 숨기고 next 표시
   document.getElementById(retryId).style.display = "none";
   document.getElementById(nextId).style.display = "inline-block";
 }
