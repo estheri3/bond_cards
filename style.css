@@ -46,7 +46,6 @@ button:hover {
   perspective: 1000px;
   position: relative;
   transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d; /* iOS Safari 대응 */
   transition: transform 0.6s ease;
 }
 .card.is-flipped {
@@ -63,7 +62,6 @@ button:hover {
   align-items: center;
   padding: 20px;
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden; /* iOS Safari 대응 */
 }
 .card__face--front img {
   width: 100%;
@@ -80,12 +78,6 @@ button:hover {
   overflow-y: auto;
   font-size: 20px;
   line-height: 1.6;
-}
-
-/* 버튼 그룹 */
-.btn-group {
-  margin-top: 25px;   /* 카드와 버튼 사이 간격 */
-  text-align: center;
 }
 
 /* 태그 */
@@ -109,13 +101,10 @@ button:hover {
   margin-bottom: 10px;
   font-style: italic;
 }
-
-/* 영역 설명 */
-.section-desc {
+.desc-text {
   font-size: 18px;
-  color: #555;
-  margin: 10px 0 20px;
-  line-height: 1.5;
+  color: #333;
+  margin-bottom: 16px;
 }
 
 /* 모바일 최적화 */
