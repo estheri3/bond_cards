@@ -151,10 +151,13 @@ function enableCardFlip(cardId, boxId, category, retryId, nextId) {
     drawQuestion(boxId, category);
     cardElement.classList.add("is-flipped");
 
+    // 상태 분기
     if (!cardElement.dataset.retried) {
+      // 첫 번째 질문 → "다시 뽑기"
       document.getElementById(retryId).style.display = "inline-block";
       document.getElementById(nextId).style.display = "none";
     } else {
+      // 다시 뽑기 후 → "다음으로"
       document.getElementById(retryId).style.display = "none";
       document.getElementById(nextId).style.display = "inline-block";
       cardElement.dataset.retried = ""; // 초기화
@@ -209,8 +212,10 @@ function retry(boxId, category, retryId, nextId) {
     <div class="tags">${qobj.tags.map(t=>`<span>${t}</span>`).join('')}</div>
   `;
 
+  // "다시 뽑기 후 플립" 상태를 기록
   cardElement.dataset.retried = "true";
 
+  // 버튼 숨김
   document.getElementById(retryId).style.display = "none";
   document.getElementById(nextId).style.display = "none";
 }
@@ -227,4 +232,3 @@ document.addEventListener("DOMContentLoaded", () => {
   enableCardFlip("card2", "q2", "bind", "retry2", "next2");
   enableCardFlip("card3", "q3", "free", "retry3", "next3");
 });
-
