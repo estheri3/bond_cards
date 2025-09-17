@@ -174,11 +174,14 @@ function drawQuestion(boxId, category) {
   lastPicked[category] = randomIndex;
   const qobj = qlist[randomIndex];
 
+  const verseHtml = qobj.verse && qobj.verse.trim() !== "" 
+    ? `<h3>Verse</h3><p>${qobj.verse}</p>` 
+    : "";
+
   box.innerHTML = `
     <h3>Question</h3>
     <p>${qobj.q}</p>
-    <h3>Verse</h3>
-    <p>${qobj.verse}</p>
+    ${verseHtml}
   `;
 }
 
@@ -196,11 +199,14 @@ function retry(boxId, category, retryId, nextId) {
   lastPicked[category] = randomIndex;
   const qobj = qlist[randomIndex];
 
+  const verseHtml = qobj.verse && qobj.verse.trim() !== "" 
+    ? `<h3>Verse</h3><p>${qobj.verse}</p>` 
+    : "";
+
   document.getElementById(boxId).innerHTML = `
     <h3>Question</h3>
     <p>${qobj.q}</p>
-    <h3>Verse</h3>
-    <p>${qobj.verse}</p>
+    ${verseHtml}
   `;
 
   cardElement.dataset.retried = "true";
