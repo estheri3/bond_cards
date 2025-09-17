@@ -46,7 +46,6 @@ button:hover {
   perspective: 1000px;
   position: relative;
   transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d; /* iOS Safari */
   transition: transform 0.6s ease;
 }
 .card.is-flipped {
@@ -62,20 +61,14 @@ button:hover {
   justify-content: center;
   align-items: center;
   padding: 20px;
-
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden; /* iOS Safari */
 }
-
-/* 앞면 - 기본 */
 .card__face--front img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 12px;
 }
-
-/* 뒷면 */
 .card__face--back {
   background: #fff;
   color: #333;
@@ -85,17 +78,6 @@ button:hover {
   overflow-y: auto;
   font-size: 20px;
   line-height: 1.6;
-}
-
-/* 버전별 카드 앞면 색상 */
-.card.connect .card__face--front {
-  background: #f8d7da; /* 연결: 연분홍 */
-}
-.card.bind .card__face--front {
-  background: #d2b48c; /* 결박: 갈빛 (Tan) */
-}
-.card.free .card__face--front {
-  background: #deb887; /* 자유: BurlyWood */
 }
 
 /* 태그 */
@@ -112,14 +94,18 @@ button:hover {
   margin-top: 5px;
 }
 
-/* 📱 모바일 최적화 */
+/* 안내 문구 */
+.guide-text {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+/* 모바일 최적화 */
 @media (max-width: 600px) {
-  body {
-    font-size: 18px;
-  }
-  .card {
-    max-width: 300px;
-  }
+  body { font-size: 18px; }
+  .card { max-width: 300px; }
   h1 { font-size: 32px; }
   h2 { font-size: 24px; }
 }
