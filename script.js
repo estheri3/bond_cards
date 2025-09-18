@@ -132,9 +132,9 @@ function nextSection(id) {
   document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 
-  if (id === 'section1') hideBtns('retry1','next1');
-  if (id === 'section2') hideBtns('retry2','next2');
-  if (id === 'section3') hideBtns('retry3','next3');
+  if (id.includes('section1')) hideBtns('retry1','next1');
+  if (id.includes('section2')) hideBtns('retry2','next2');
+  if (id.includes('section3')) hideBtns('retry3','next3');
 }
 
 // 카드 플립
@@ -219,6 +219,24 @@ function retry(boxId, category, retryId, nextId) {
 function hideBtns(retryId, nextId) {
   document.getElementById(retryId).style.display = "none";
   document.getElementById(nextId).style.display = "none";
+}
+
+// 전체 리셋
+function resetAll() {
+  document.querySelectorAll('.card').forEach(card => {
+    card.classList.remove("is-flipped");
+    card.removeAttribute("data-retried");
+  });
+
+  document.querySelectorAll('.btn-group button').forEach(btn => {
+    btn.style.display = "none";
+  });
+
+  lastPicked.connect = null;
+  lastPicked.bind = null;
+  lastPicked.free = null;
+
+  nextSection('intro'); // 인트로 화면으로 이동
 }
 
 // 초기화
