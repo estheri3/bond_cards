@@ -125,90 +125,12 @@ const questions = {
   ]
 };
 
-const lastPicked = { connect: null, bind: null, free: null };
-
-// 섹션 전환
-function nextSection(id) {
-  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-
-  if (id.includes('section1')) hideBtns('retry1','next1');
-  if (id.includes('section2')) hideBtns('retry2','next2');
-  if (id.includes('section3')) hideBtns('retry3','next3');
-}
-
-// 카드 플립
-function enableCardFlip(cardId, boxId, category, retryId, nextId) {
-  const cardElement = document.getElementById(cardId);
-
-  const flipHandler = () => {
-    if (cardElement.classList.contains("is-flipped")) return;
-
-    drawQuestion(boxId, category);
-    cardElement.classList.add("is-flipped");
-
-    if (!cardElement.dataset.retried) {
-      document.getElementById(retryId).style.display = "inline-block";
-      document.getElementById(nextId).style.display = "none";
-    } else {
-      document.getElementById(retryId).style.display = "none";
-      document.getElementById(nextId).style.display = "inline-block";
-      cardElement.dataset.retried = "";
-    }
-  };
-
-  cardElement.addEventListener("click", flipHandler);
-  cardElement.addEventListener("touchstart", flipHandler);
-}
-
-// 질문 뽑기
-function drawQuestion(boxId, category) {
-  const box = document.getElementById(boxId);
-  const qlist = questions[category];
-
-  let randomIndex;
-  do {
-    randomIndex = Math.floor(Math.random() * qlist.length);
-  } while (randomIndex === lastPicked[category] && qlist.length > 1);
-
-  lastPicked[category] = randomIndex;
-  const qobj = qlist[randomIndex];
-
-  const verseHtml = qobj.verse && qobj.verse.trim() !== "" 
-    ? `<h3>Verse</h3><p>${qobj.verse}</p>` 
-    : "";
-
-  box.innerHTML = `
-    <h3>Question</h3>
-    <p>${qobj.q}</p>
-    ${verseHtml}
-  `;
-}
-
 // 다시 뽑기
 function retry(boxId, category, retryId, nextId) {
   const cardElement = document.getElementById(boxId).closest(".card");
   cardElement.classList.remove("is-flipped");
 
-  const qlist = questions[category];
-  let randomIndex;
-  do {
-    randomIndex = Math.floor(Math.random() * qlist.length);
-  } while (randomIndex === lastPicked[category] && qlist.length > 1);
-
-  lastPicked[category] = randomIndex;
-  const qobj = qlist[randomIndex];
-
-  const verseHtml = qobj.verse && qobj.verse.trim() !== "" 
-    ? `<h3>Verse</h3><p>${qobj.verse}</p>` 
-    : "";
-
-  document.getElementById(boxId).innerHTML = `
-    <h3>Question</h3>
-    <p>${qobj.q}</p>
-    ${verseHtml}
-  `;
-
+  drawQuestion(boxId, category);
   cardElement.dataset.retried = "true";
 
   document.getElementById(retryId).style.display = "none";
@@ -231,10 +153,6 @@ function resetAll() {
   document.querySelectorAll('.btn-group button').forEach(btn => {
     btn.style.display = "none";
   });
-
-  lastPicked.connect = null;
-  lastPicked.bind = null;
-  lastPicked.free = null;
 
   nextSection('intro'); // 인트로 화면으로 이동
 }
