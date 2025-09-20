@@ -125,19 +125,21 @@ const questions = {
   ]
 };
 
+// --- 상태 저장 ---
 const lastPicked = { connect: null, bind: null, free: null };
 
-// 섹션 전환
+// --- 섹션 전환 ---
 function nextSection(id) {
   document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  const target = document.getElementById(id);
+  if (target) target.classList.add('active');
 
-  if (id.includes('section1')) hideBtns('retry1','next1');
-  if (id.includes('section2')) hideBtns('retry2','next2');
-  if (id.includes('section3')) hideBtns('retry3','next3');
+  if (id === 'section1') hideBtns('retry1','next1');
+  if (id === 'section2') hideBtns('retry2','next2');
+  if (id === 'section3') hideBtns('retry3','next3');
 }
 
-// 카드 플립
+// --- 카드 플립 ---
 function enableCardFlip(cardId, boxId, category, retryId, nextId) {
   const cardElement = document.getElementById(cardId);
 
@@ -161,7 +163,7 @@ function enableCardFlip(cardId, boxId, category, retryId, nextId) {
   cardElement.addEventListener("touchstart", flipHandler);
 }
 
-// 질문 뽑기
+// --- 질문 뽑기 ---
 function drawQuestion(boxId, category) {
   const box = document.getElementById(boxId);
   const qlist = questions[category];
@@ -185,7 +187,7 @@ function drawQuestion(boxId, category) {
   `;
 }
 
-// 다시 뽑기
+// --- 다시 뽑기 ---
 function retry(boxId, category, retryId, nextId) {
   const cardElement = document.getElementById(boxId).closest(".card");
   cardElement.classList.remove("is-flipped");
@@ -215,13 +217,13 @@ function retry(boxId, category, retryId, nextId) {
   document.getElementById(nextId).style.display = "none";
 }
 
-// 버튼 숨기기
+// --- 버튼 숨기기 ---
 function hideBtns(retryId, nextId) {
   document.getElementById(retryId).style.display = "none";
   document.getElementById(nextId).style.display = "none";
 }
 
-// 전체 리셋
+// --- 전체 리셋 ---
 function resetAll() {
   document.querySelectorAll('.card').forEach(card => {
     card.classList.remove("is-flipped");
@@ -240,10 +242,10 @@ function resetAll() {
   lastPicked.bind = null;
   lastPicked.free = null;
 
-  nextSection('intro');
+  nextSection('intro'); // 다시 인트로로 이동
 }
 
-// 초기화
+// --- 초기화 ---
 document.addEventListener("DOMContentLoaded", () => {
   enableCardFlip("card1", "q1", "connect", "retry1", "next1");
   enableCardFlip("card2", "q2", "bind", "retry2", "next2");
