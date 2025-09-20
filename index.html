@@ -22,17 +22,21 @@
       주님 안에서 사랑의 매듭을 지으며,<br>
       함께 자유와 기쁨을 누리는 시간이 되길 소망합니다 🕊️
     </p>
-    <!-- 시작 버튼은 nextSection -->
-    <button onclick="nextSection('section1')">시작하기</button>
+    <button onclick="nextSection('section1-intro')">시작하기</button>
   </div>
 
-  <!-- 영역 1 -->
-  <div id="section1" class="section">
+  <!-- 섹션 1 안내 -->
+  <div id="section1-intro" class="section">
     <h2>#1. 매듭 – 연결</h2>
     <p class="desc-text">
-      우리의 삶에는 수많은 매듭이 있습니다. <br> 
+      우리의 삶에는 수많은 매듭이 있습니다. <br>
       하나님과 공동체와의 관계의 끈을 돌아보는 시간입니다.
     </p>
+    <button onclick="nextSection('section1-card')">질문 보기</button>
+  </div>
+
+  <!-- 섹션 1 카드 -->
+  <div id="section1-card" class="section">
     <p class="guide-text">👉 카드를 눌러주세요!</p>
     <div class="card-area">
       <div class="card" id="card1">
@@ -46,17 +50,22 @@
     </div>
     <div class="btn-group">
       <button id="retry1" onclick="retry('q1','connect','retry1','next1')" style="display:none">다시 뽑기</button>
-      <button id="next1" onclick="nextSection('section2')" style="display:none">다음으로</button>
+      <button id="next1" onclick="nextSection('section2-intro')" style="display:none">다음으로</button>
     </div>
   </div>
 
-  <!-- 영역 2 -->
-  <div id="section2" class="section">
+  <!-- 섹션 2 안내 -->
+  <div id="section2-intro" class="section">
     <h2>#2. 매듭 – 결박</h2>
     <p class="desc-text">
       때로는 마음을 꽉 조이는 듯한 매듭이 있습니다.<br>
       그러나 그 속에서도 하나님은 우리를 붙들고 계십니다.
     </p>
+    <button onclick="nextSection('section2-card')">질문 보기</button>
+  </div>
+
+  <!-- 섹션 2 카드 -->
+  <div id="section2-card" class="section">
     <p class="guide-text">👉 카드를 눌러주세요!</p>
     <div class="card-area">
       <div class="card" id="card2">
@@ -70,17 +79,22 @@
     </div>
     <div class="btn-group">
       <button id="retry2" onclick="retry('q2','bind','retry2','next2')" style="display:none">다시 뽑기</button>
-      <button id="next2" onclick="nextSection('section3')" style="display:none">다음으로</button>
+      <button id="next2" onclick="nextSection('section3-intro')" style="display:none">다음으로</button>
     </div>
   </div>
 
-  <!-- 영역 3 -->
-  <div id="section3" class="section">
+  <!-- 섹션 3 안내 -->
+  <div id="section3-intro" class="section">
     <h2>#3. 매듭 – 자유</h2>
     <p class="desc-text">
       주님은 묶인 매듭을 풀어 자유를 주시는 분이십니다.<br>
       지금 나를 자유롭게 하는 은혜를 함께 나눠봅시다.
     </p>
+    <button onclick="nextSection('section3-card')">질문 보기</button>
+  </div>
+
+  <!-- 섹션 3 카드 -->
+  <div id="section3-card" class="section">
     <p class="guide-text">👉 카드를 눌러주세요!</p>
     <div class="card-area">
       <div class="card" id="card3">
@@ -113,7 +127,6 @@
       함께 기도하며 나아가는<br>
       하늘이들 되길 축복합니다. 🙏
     </p>
-    <!-- 처음으로 돌아가기는 resetAll -->
     <button onclick="resetAll()">처음으로 돌아가기</button>
   </div>
 
